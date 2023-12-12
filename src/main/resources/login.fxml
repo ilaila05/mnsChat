@@ -7,10 +7,11 @@
 
 <VBox prefHeight="747.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_LoginController">
    <children>
-      <Pane prefHeight="791.0" prefWidth="632.0">
+      <Pane prefHeight="791.0" prefWidth="632.0" style="-fx-background-color: #011627;">
          <children>
-            <MFXButton layoutX="289.0" layoutY="662.0" styleClass="outline-button" stylesheets="@materialfx/css/Buttons.css" text="Button" />
-            <MFXTextField layoutX="274.0" layoutY="325.0" />
+            <MFXButton layoutX="245.0" layoutY="632.0" prefHeight="40.0" prefWidth="144.0" styleClass="outline-button" stylesheets="@materialfx/css/Buttons.css" text="Invia" />
+            <MFXTextField layoutX="160.0" layoutY="262.0" prefHeight="78.0" prefWidth="314.0" style="-fx-border-color: #54defd; -fx-border-width: 3px;" />
+            <MFXTextField layoutX="160.0" layoutY="348.0" prefHeight="78.0" prefWidth="314.0" style="-fx-border-color: #54defd; -fx-border-width: 3px;" />
          </children>
       </Pane>
    </children>

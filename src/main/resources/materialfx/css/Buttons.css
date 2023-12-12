@@ -30,24 +30,28 @@
 }
 
 .mfx-button .text {
-	-fx-font-smoothing-type: gray;
+	-fx-font-smoothing-type: #0000c4;
 }
 
 #custom {
-	-fx-background-color: -mfx-purple;
+	-fx-background-color: #54defd;
 	-fx-text-fill: white
 }
 
-.outline-button {
+.outline-button{
 	-fx-background-color: transparent;
-	-fx-border-color: -mfx-purple;
+	-fx-border-color: #54defd;
 	-fx-border-radius: 3;
 
-	-fx-text-fill: -mfx-purple;
+	-fx-text-fill: #54defd;
+}
+
+.mfx-ripple-generator {
+	-mfx-ripple-color: #00ff9c;
 }
 
 .outline-button:hover{
-	-fx-background-color: -mfx-purple;
+	-fx-background-color: #54defd;
 	-fx-text-fill: white;
 }
 
@@ -67,5 +71,5 @@
 }
 
 .link-button .mfx-ripple-generator {
-	-mfx-ripple-color: #D9E9FF;
+	-mfx-ripple-color: red;
 }
