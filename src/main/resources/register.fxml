@@ -24,16 +24,16 @@
                         <Font name="Bernard MT Condensed" size="100.0" />
                     </font>
                 </Label>
-                <MFXTextField floatingText="Nome" layoutX="162.0" layoutY="256.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
+                <MFXTextField fx:id="nome" floatingText="Nome" layoutX="162.0" layoutY="256.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
                 <Label layoutX="162.0" layoutY="557.0" prefHeight="17.0" prefWidth="144.0" text="Sei già registrato?" textFill="#455bff" />
-                <MFXButton layoutX="412.0" layoutY="553.0" prefHeight="26.0" prefWidth="75.0" stylesheets="@materialfx/css/Buttons.css" text="Login">
+                <MFXButton fx:id="login" layoutX="412.0" layoutY="553.0" prefHeight="26.0" prefWidth="75.0" stylesheets="@materialfx/css/Buttons.css" text="Login">
                     <styleClass>
                         <String fx:value="mfx-transparent-button" />
                     </styleClass>
                 </MFXButton>
-            <MFXTextField floatingText="Cognome" layoutX="162.0" layoutY="330.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
-            <MFXTextField floatingText="nickname" layoutX="162.0" layoutY="404.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
-            <MFXPasswordField floatingText="password" layoutX="162.0" layoutY="478.0" prefHeight="67.0" prefWidth="314.0" stylesheets="@materialfx/css/TextFields.css" />
+            <MFXTextField fx:id="cognome" floatingText="Cognome" layoutX="162.0" layoutY="330.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
+            <MFXTextField fx:id="nickname" floatingText="nickname" layoutX="162.0" layoutY="404.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
+            <MFXPasswordField fx:id="password" floatingText="password" layoutX="162.0" layoutY="478.0" prefHeight="67.0" prefWidth="314.0" stylesheets="@materialfx/css/TextFields.css" />
             </children>
         </Pane>
     </children>
