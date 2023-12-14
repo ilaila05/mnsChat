@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="747.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_LoginController">
+<VBox prefHeight="747.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_LoginController">
     <children>
-        <Pane prefHeight="791.0" prefWidth="632.0">
+        <Pane prefHeight="791.0" prefWidth="632.0" style="-fx-background-color: #011627;">
             <children>
-                <Label layoutX="101.0" layoutY="80.0" prefHeight="118.0" prefWidth="431.0" text="REGISTRATI" textAlignment="JUSTIFY">
+                <MFXButton layoutX="247.0" layoutY="635.0" prefHeight="40.0" prefWidth="144.0" stylesheets="@materialfx/css/Buttons.css" text="Invia">
+                    <styleClass>
+                        <String fx:value="outline-button" />
+                        <String fx:value="mfx-ripple-generator" />
+                    </styleClass>
+                </MFXButton>
+                <Label layoutX="94.0" layoutY="66.0" prefHeight="128.0" prefWidth="451.0" text="REGISTRATI" textFill="#54defd">
                     <font>
-                        <Font name="Bernard MT Condensed" size="96.0" />
-                    </font></Label>
-                <Button layoutX="261.0" layoutY="629.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Invia" />
-                <TextField layoutX="183.0" layoutY="290.0" prefHeight="60.0" prefWidth="267.0" promptText="Cognome">
-                    <font>
-                        <Font name="Arial" size="22.0" />
+                        <Font name="Bernard MT Condensed" size="100.0" />
                     </font>
-                </TextField>
-                <TextField layoutX="183.0" layoutY="358.0" prefHeight="60.0" prefWidth="267.0" promptText="nickname">
-                    <font>
-                        <Font name="Arial" size="22.0" />
-                    </font>
-                </TextField>
-                <TextField layoutX="183.0" layoutY="497.0" prefHeight="60.0" prefWidth="267.0" promptText="password">
-                    <font>
-                        <Font name="Arial" size="22.0" />
-                    </font>
-                </TextField>
-                <TextField layoutX="183.0" layoutY="429.0" prefHeight="60.0" prefWidth="267.0" promptText="email">
-                    <font>
-                        <Font name="Arial" size="22.0" />
-                    </font>
-                </TextField>
-                <TextField layoutX="183.0" layoutY="218.0" prefHeight="60.0" prefWidth="267.0" promptText="Nome">
-                    <font>
-                        <Font name="Arial" size="22.0" />
-                    </font>
-                </TextField>
-                <Label layoutX="183.0" layoutY="569.0" prefHeight="17.0" prefWidth="148.0" text="Sei già un utente?" textFill="#0009ff" />
-                <Label layoutX="418.0" layoutY="569.0" prefHeight="17.0" prefWidth="32.0" text="Login" textFill="#0009ff" />
+                </Label>
+                <MFXTextField floatingText="Nome" layoutX="162.0" layoutY="256.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
+                <Label layoutX="162.0" layoutY="557.0" prefHeight="17.0" prefWidth="144.0" text="Sei già registrato?" textFill="#455bff" />
+                <MFXButton layoutX="412.0" layoutY="553.0" prefHeight="26.0" prefWidth="75.0" stylesheets="@materialfx/css/Buttons.css" text="Login">
+                    <styleClass>
+                        <String fx:value="mfx-transparent-button" />
+                    </styleClass>
+                </MFXButton>
+            <MFXTextField floatingText="Cognome" layoutX="162.0" layoutY="330.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
+            <MFXTextField floatingText="nickname" layoutX="162.0" layoutY="404.0" prefHeight="40.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
+            <MFXPasswordField floatingText="password" layoutX="162.0" layoutY="478.0" prefHeight="67.0" prefWidth="314.0" stylesheets="@materialfx/css/TextFields.css" />
             </children>
         </Pane>
     </children>
