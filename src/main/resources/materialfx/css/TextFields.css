@@ -26,6 +26,10 @@
 .mfx-text-field {
 	-fx-min-width: 130;
 	-fx-font-family: 'Open Sans SemiBold';
+	-fx-border-color:  #54defd;
+	-fx-border-width:  3px;
+	-mfx-main: #01A871;
+	-fx-font-size: 18;
 }
 
 .mfx-text-field .floating-text {
@@ -34,7 +38,7 @@
 
 
 #customField {
-	-fx-border-color: -common-gradient;
+	-fx-border-color:  #54defd;
 }
 
 #customField .floating-text {

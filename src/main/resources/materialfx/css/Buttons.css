@@ -29,29 +29,34 @@
 	-mfx-auto-clip: true;
 }
 
-.mfx-button .text {
-	-fx-font-smoothing-type: #0000c4;
+.mfx-transparent-button {
+	-fx-background-color: transparent;
+	-fx-text-fill: #455bff;
 }
 
 #custom {
-	-fx-background-color: #54defd;
+	-fx-background-color: -light-blue;
 	-fx-text-fill: white
 }
 
 .outline-button{
 	-fx-background-color: transparent;
-	-fx-border-color: #54defd;
+	-fx-border-color: -light-blue;
 	-fx-border-radius: 3;
 
-	-fx-text-fill: #54defd;
+	-fx-text-fill: -light-blue;
+}
+
+.mfx-transparent-button .mfx-ripple-generator {
+	-mfx-ripple-color: red;
 }
 
 .mfx-ripple-generator {
-	-mfx-ripple-color: #00ff9c;
+	-mfx-ripple-color: white;
 }
 
 .outline-button:hover{
-	-fx-background-color: #54defd;
+	-fx-background-color: -light-blue;
 	-fx-text-fill: white;
 }
 
@@ -72,4 +77,8 @@
 
 .link-button .mfx-ripple-generator {
 	-mfx-ripple-color: red;
+}
+
+.outline-button .mfx-ripple-generator {
+	-mfx-ripple-color: -blue-green;
 }
