@@ -36,7 +36,7 @@ public class Client_ChatList implements Initializable {
             //cell.setStyle("-fx-background-color: red;");
             return cell;
         });
-        List<String> chatData = Arrays.asList("Chat 1", "Chat 2", "Chat 3", "Chat 4");
+        List<String> chatData = Arrays.asList("Adnan Youssef", "Zorzella Ilaria", "Marchiotto diego", "Borin Giacomo luciano");
         chatListView.getItems().addAll(chatData);
 
         chatListView.setOnMouseClicked(event -> {

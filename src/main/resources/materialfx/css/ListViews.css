@@ -22,6 +22,12 @@
 
 .mfx-list-view .virtual-flow .mfx-list-cell .data-label {
 	-fx-font-family: 'Open Sans Regular';
+	-fx-background-color: -mfx-purple;
+	-fx-background-radius: 10;
+	-fx-border-color: -mfx-purple;
+	-fx-border-radius: 10;
+	-fx-padding: 4;
+	-fx-pref-width: 200;
 }
 
 .mfx-list-view .virtual-flow .mfx-list-cell:selected .data-label {
