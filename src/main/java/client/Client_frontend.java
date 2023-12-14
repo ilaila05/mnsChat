@@ -18,7 +18,7 @@ public class Client_frontend extends Application{
             }*/
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/register.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/login.fxml"));
 
 
             Parent root = fxmlLoader.load();
