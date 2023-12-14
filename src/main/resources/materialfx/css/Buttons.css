@@ -55,10 +55,6 @@
 	-mfx-ripple-color: white;
 }
 
-.link-button .mfx-ripple-generator {
-	-mfx-ripple-color: red;
-}
-
 .outline-button:hover{
 	-fx-background-color: -light-blue;
 	-fx-text-fill: white;
