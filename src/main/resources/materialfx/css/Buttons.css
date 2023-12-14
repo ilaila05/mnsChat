@@ -48,7 +48,7 @@
 }
 
 .mfx-transparent-button .mfx-ripple-generator {
-	-mfx-ripple-color: red;
+	-mfx-ripple-color: -deep-blue;
 }
 
 .mfx-ripple-generator {
