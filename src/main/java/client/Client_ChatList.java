@@ -3,6 +3,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.cell.MFXListCell;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -21,15 +22,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Client_ChatList  {
+public class Client_ChatList implements Initializable {
     @FXML
     private VBox chatListLayout;
 
     @FXML
     private MFXListView<String> chatListView;
 
-   /* @Override
+
     public void initialize(URL location, ResourceBundle resources) {
+        chatListView.setCellFactory((s) -> {
+            MFXListCell<String> cell = new MFXListCell<>(chatListView, s);
+            //cell.setStyle("-fx-background-color: red;");
+            return cell;
+        });
         List<String> chatData = Arrays.asList("Chat 1", "Chat 2", "Chat 3", "Chat 4");
         chatListView.getItems().addAll(chatData);
 
@@ -39,6 +45,6 @@ public class Client_ChatList  {
                 System.out.println("Hai selezionato: " + selectedChat);
             }
         });
-    }*/
+    }
 
 }

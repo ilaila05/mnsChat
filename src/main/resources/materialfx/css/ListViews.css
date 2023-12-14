@@ -36,7 +36,7 @@
 	-fx-font-family: 'Open Sans SemiBold';
 }
 
-#custList {
+#chatListLayout {
 	-fx-background-color: -mfx-purple;
 	-fx-background-radius: 10;
 	-fx-border-color: -mfx-purple;
@@ -44,39 +44,39 @@
 	-fx-padding: 4;
 }
 
-#custList .virtual-flow {
+#chatListLayout .virtual-flow {
 	-fx-background-color: transparent;
 }
 
-#custList:focused {
+#chatListLayout:focused {
 	-fx-border-color: -mfx-purple;
 }
 
-#custList .virtual-flow .mfx-list-cell {
+#chatListLayout .virtual-flow .mfx-list-cell {
 	-fx-background-color: transparent;
 	-fx-border-color: transparent;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
 }
 
-#custList .virtual-flow .mfx-list-cell .data-label {
+#chatListLayout .virtual-flow .mfx-list-cell .data-label {
 	-fx-text-fill: white;
 }
 
-#custList .virtual-flow .mfx-list-cell .user-icon {
+#chatListLayout .virtual-flow .mfx-list-cell .user-icon {
 	-mfx-color: white;
 }
 
-#custList .virtual-flow .mfx-list-cell:hover,
-#custList .virtual-flow .mfx-list-cell:selected {
+#chatListLayout .virtual-flow .mfx-list-cell:hover,
+#chatListLayout .virtual-flow .mfx-list-cell:selected {
 	-fx-background-color: rgba(255, 255, 255, 0.3);
 }
 
-#custList .virtual-flow .mfx-list-cell .mfx-ripple-generator {
+#chatListLayout .virtual-flow .mfx-list-cell .mfx-ripple-generator {
 	-mfx-auto-clip: true;
 }
 
-#custList .virtual-flow .mfx-list-cell:selected .mfx-ripple-generator {
+#chatListLayout .virtual-flow .mfx-list-cell:selected .mfx-ripple-generator {
 	-mfx-paused: true;
 }
 
