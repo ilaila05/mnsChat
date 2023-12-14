@@ -50,6 +50,10 @@
 	-mfx-ripple-color: #00ff9c;
 }
 
+.link-button .mfx-ripple-generator {
+	-mfx-ripple-color: red;
+}
+
 .outline-button:hover{
 	-fx-background-color: #54defd;
 	-fx-text-fill: white;
