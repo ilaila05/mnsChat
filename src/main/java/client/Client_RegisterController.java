@@ -38,6 +38,27 @@ public class Client_RegisterController {
 
         if(sNome.equals("") || sCognome.equals("") || sNickname.equals("") || sPassword.equals("")){
             System.out.println("no");
+        }else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat_list.fxml"));
+            try {
+                VBox registratiLayout = fxmlLoader.load();
+
+                Stage registratiStage = new Stage();
+                registratiStage.initModality(Modality.APPLICATION_MODAL);
+                registratiStage.setTitle("Registrati");
+
+                Scene chatListScene = new Scene(registratiLayout);
+                registratiStage.setScene(chatListScene);
+
+                Scene currentScene = registrati.getScene();
+                Stage currentStage = (Stage) currentScene.getWindow();
+                currentStage.close();
+
+                registratiStage.show();
+            } catch ( IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
         System.out.println(sNome);

@@ -11,11 +11,6 @@ public class Client_frontend extends Application{
     @Override
     public void start(Stage primaryStage) {
         try{
-            /*URL resourceUrl = getClass().getClassLoader().getResource("client/esempio_io.fxml");
-
-            if (resourceUrl == null) {
-                System.out.println("FXML resource not found");
-            }*/
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/login.fxml"));
