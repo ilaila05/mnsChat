@@ -39,6 +39,7 @@ public class Client_LoginController {
         }else{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat_list.fxml"));
             try {
+
                 VBox registratiLayout = fxmlLoader.load();
 
                 Stage registratiStage = new Stage();
