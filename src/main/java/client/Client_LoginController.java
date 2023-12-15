@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static client.Client_proxy.setLogin;
+
 public class Client_LoginController {
     @FXML
     private MFXTextField nickname;
@@ -50,15 +52,14 @@ public class Client_LoginController {
                 Stage currentStage = (Stage) currentScene.getWindow();
                 currentStage.close();
 
+                setLogin(sNickname, sPassword);
+
                 registratiStage.show();
             } catch ( IOException e) {
                 e.printStackTrace();
             }
 
         }
-
-        System.out.println(sNickname);
-        System.out.println(sPassword);
     }
 
     private void openRegistrati() {
