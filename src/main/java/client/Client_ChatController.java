@@ -122,7 +122,9 @@ private void receiveMessage(){
             chatListStage.setScene(chatListScene);
             chatListStage.setMaxHeight(400);
             chatListStage.setMaxWidth(200);
-
+            Scene currentScene =  chatBox.getScene();
+            Stage currentStage = (Stage) currentScene.getWindow();
+            currentStage.close();
             chatListStage.show();
         } catch ( IOException e) {
             e.printStackTrace();
