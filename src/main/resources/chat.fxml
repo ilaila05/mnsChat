@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="430.0" prefWidth="649.0" stylesheets="@materialfx/css/Message.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_ChatController">
+<BorderPane prefHeight="430.0" prefWidth="649.0" style="-fx-background-color: #011627; -fx-border-radius: 0px 0px 10px 0px;" stylesheets="@materialfx/css/Message.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_ChatController">
+
     <center>
-        <MFXScrollPane prefHeight="352.0" prefWidth="654.0" BorderPane.alignment="CENTER">
+        <MFXScrollPane prefHeight="352.0" prefWidth="654.0" style="-fx-background-color: linear-gradient(to bottom right, rgba(195,18,241,0.42), rgba(0,196,255,0.35));" BorderPane.alignment="CENTER">
             <VBox fx:id="chatBox" prefHeight="27.0" prefWidth="634.0" spacing="5.0" />
         </MFXScrollPane>
     </center>
     <bottom>
         <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <right>
-                <MFXButton fx:id="sendButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" styleClass="outline-button" stylesheets="@materialfx/css/Buttons.css" text="Send" BorderPane.alignment="CENTER_RIGHT" />
+                <MFXButton fx:id="sendButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-border-radius: none;" styleClass="outline-button" stylesheets="@materialfx/css/Buttons.css" text="Send" BorderPane.alignment="CENTER_RIGHT" />
             </right>
          <center>
-                <MFXTextField fx:id="messageField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="487.0" styleClass="floating-text" stylesheets="@materialfx/css/MFXTextField.css" BorderPane.alignment="CENTER" />
+                <MFXTextField fx:id="messageField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="487.0" style="-fx-background-color: #308c89; -fx-border-radius: none;" styleClass="floating-text" stylesheets="@materialfx/css/MFXTextField.css" BorderPane.alignment="CENTER" />
          </center>
         </BorderPane>
     </bottom>
    <top>
-      <MFXButton fx:id="chatListButton" styleClass="outline-button" stylesheets="@materialfx/css/Buttons.css" text="chat" BorderPane.alignment="CENTER" />
+      <MFXButton fx:id="chatListButton" prefHeight="27.0" prefWidth="776.0" styleClass="outline-button" stylesheets="@materialfx/css/Buttons.css" text="chat" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

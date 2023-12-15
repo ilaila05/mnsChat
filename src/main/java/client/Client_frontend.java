@@ -13,7 +13,7 @@ public class Client_frontend extends Application{
         try{
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/login.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/chat.fxml"));
 
 
             Parent root = fxmlLoader.load();

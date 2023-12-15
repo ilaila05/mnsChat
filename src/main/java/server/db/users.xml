@@ -1,0 +1,16 @@
+<!DOCTYPE users SYSTEM "users.dtd">
+
+<users>
+    <user>
+        <name>John</name>
+        <surname>Doe</surname>
+        <nickname>johndoe</nickname>
+        <password>secure123</password>
+    </user>
+    <user>
+        <name>Jane</name>
+        <surname>Smith</surname>
+        <nickname>janesmith</nickname>
+        <password>strongpass</password>
+    </user>
+</users>
