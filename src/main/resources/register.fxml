@@ -19,7 +19,7 @@
                         <String fx:value="mfx-ripple-generator" />
                     </styleClass>
                 </MFXButton>
-                <Label layoutX="94.0" layoutY="66.0" prefHeight="128.0" prefWidth="451.0" text="REGISTRATI" textFill="#54defd">
+                <Label layoutX="52.0" layoutY="68.0" prefHeight="128.0" prefWidth="535.0" styleClass="bahnschrift" stylesheets="@materialfx/fonts/Fonts.css" text="REGISTRATI" textFill="#54defd">
                     <font>
                         <Font name="Bernard MT Condensed" size="100.0" />
                     </font>

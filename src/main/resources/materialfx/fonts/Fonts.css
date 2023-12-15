@@ -19,3 +19,7 @@
 @import "Comfortaa/Comfortaa.css";
 @import "OpenSans/OpenSans.css";
 @import "Roboto/Roboto.css";
+
+.bahnschrift {
+    -fx-font-family: Bahnschrift;
+}
