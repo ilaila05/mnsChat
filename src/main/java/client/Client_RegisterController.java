@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static client.Client_proxy.setRegister;
+
 public class Client_RegisterController {
     @FXML
     private MFXTextField nome;
@@ -30,15 +32,15 @@ public class Client_RegisterController {
         login.setOnAction(event -> openLogin());
     }
 
-    public void invio(){
+    public void invio() {
         String sNome = nome.getText();
-        String sCognome= cognome.getText();
+        String sCognome = cognome.getText();
         String sNickname = nickname.getText();
         String sPassword = password.getText();
 
-        if(sNome.equals("") || sCognome.equals("") || sNickname.equals("") || sPassword.equals("")){
+        if (sNome.equals("") || sCognome.equals("") || sNickname.equals("") || sPassword.equals("")) {
             System.out.println("no");
-        }else{
+        } else {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat_list.fxml"));
             try {
                 VBox registratiLayout = fxmlLoader.load();
@@ -54,8 +56,10 @@ public class Client_RegisterController {
                 Stage currentStage = (Stage) currentScene.getWindow();
                 currentStage.close();
 
+                setRegister(sNome, sCognome, sNickname, sPassword);
+
                 registratiStage.show();
-            } catch ( IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
@@ -84,7 +88,7 @@ public class Client_RegisterController {
             currentStage.close();
 
             loginStage.show();
-        } catch ( IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
