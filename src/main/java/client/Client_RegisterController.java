@@ -50,7 +50,7 @@ public class Client_RegisterController {
                 Scene chatListScene = new Scene(registratiLayout);
                 registratiStage.setScene(chatListScene);
 
-                Scene currentScene = registrati.getScene();
+                Scene currentScene = login.getScene();
                 Stage currentStage = (Stage) currentScene.getWindow();
                 currentStage.close();
 
