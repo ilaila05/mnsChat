@@ -1,0 +1,6 @@
+<!ELEMENT chats (chat+)>
+        <!ELEMENT chat EMPTY>
+        <!ATTLIST chat
+                id ID #REQUIRED
+                f CDATA #REQUIRED
+                l CDATA #REQUIRED>
