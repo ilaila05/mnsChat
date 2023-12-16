@@ -25,12 +25,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static client.Client_proxy.receiveChatList;
+
 public class Client_ChatList implements Initializable {
     @FXML
     private VBox chatListLayout;
 
     @FXML
     private MFXListView<String> chatListView;
+    @FXML
+    private Label nickname;
+
+    // Getter for the Label
+    public Label getNicknameLabel() {
+        return nickname;
+    }
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,7 +48,8 @@ public class Client_ChatList implements Initializable {
             //cell.setStyle("-fx-background-color: red;");
             return cell;
         });
-        List<String> chatData = Arrays.asList("Adnan Youssef", "Zorzella Ilaria", "Marchiotto diego", "Borin Giacomo luciano");
+
+        List<String> chatData = (List<String>) receiveChatList(nickname.getText());
         chatListView.getItems().addAll(chatData);
 
         chatListView.setOnMouseClicked(event -> {
@@ -47,6 +57,7 @@ public class Client_ChatList implements Initializable {
             if (selectedChat != null) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat.fxml"));
                 try {
+
                     BorderPane chat = fxmlLoader.load();
 
                     Stage chatListStage = new Stage();
@@ -64,6 +75,7 @@ public class Client_ChatList implements Initializable {
                 } catch ( IOException e) {
                     e.printStackTrace();
                 }
+
                 System.out.println("Hai selezionato: " + selectedChat);
             }
         });

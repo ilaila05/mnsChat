@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox fx:id="chatListLayout" prefHeight="400.0" prefWidth="200.0" stylesheets="materialfx/css/ListViews.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_ChatList">
-    <Label style="-fx-padding: 6" text="John min" />
+    <Label fx:id="nickname" style="-fx-padding: 6" text="John min" />
     <MFXListView fx:id="chatListView" prefHeight="400.0" prefWidth="200.0" styleClass="mfx-list-view" stylesheets="@materialfx/css/ListViews.css">
         <!-- Aggiungi gli item della ListView qui -->
     </MFXListView>

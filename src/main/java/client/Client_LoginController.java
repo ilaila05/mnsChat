@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
 
@@ -38,11 +39,11 @@ public class Client_LoginController {
     private static String sNickname;
     private static String sPassword;
 
-    //******************** getter per il proxy
+    /******************** getter per il proxy
     public static String getsNickname() {
         return sNickname;
     }
-    //****************************************
+    ****************************************/
 
     @FXML
     public void initialize() {
@@ -64,6 +65,9 @@ public class Client_LoginController {
                 if (getState()) { //utente presente = apertura chat
 
                     VBox chatListLayout = fxmlLoader.load();
+
+                    Client_ChatList controller = fxmlLoader.getController();
+                    controller.getNicknameLabel().setText(sNickname);
 
                     Stage chatListStage = new Stage();
                     chatListStage.initModality(Modality.APPLICATION_MODAL);

@@ -80,7 +80,7 @@ public class Server_thread extends Thread{
     }
     public void sendLoginStateToClient(boolean loginState) {
         try {
-            DataOutputStream toClient = new DataOutputStream(sClient.getOutputStream());
+            ObjectOutputStream toClient = new ObjectOutputStream(sClient.getOutputStream());
 
             toClient.writeBoolean(loginState);
 
@@ -164,14 +164,20 @@ public class Server_thread extends Thread{
     public void chatList(){ //deve ritornare un'arraylist
         ArrayList<String> chatList = new ArrayList<>();
         try{
+
             DocumentBuilder builder = factory.newDocumentBuilder();
-            document = builder.parse(new File(XML_FILE_NAME));
+            Document document = builder.parse(XML_FILE_NAME);
+            NodeList userList = document.getElementsByTagName("user");
 
-            NodeList nicknames = document.getElementsByTagName("nickname");
+            for (int i = 0; i < userList.getLength(); i++) {
+                Node user = userList.item(i);
+                if (user.getNodeType() == Node.ELEMENT_NODE) {
+                    Element userElement = (Element) user;
+                    chatList.add(userElement.getElementsByTagName("nickname").item(0).getTextContent());
 
-            for (int i = 0; i < nicknames.getLength(); i++) {
-                chatList.add(nicknames.item(i).getTextContent());
+                }
             }
+
 
             for (int i = 0; i < chatList.size(); i++) {
                 if(chatList.get(i).equals(stringFromClient.get(0))){
@@ -179,17 +185,14 @@ public class Server_thread extends Thread{
                 }
             }
 
-            DataOutputStream toClient = new DataOutputStream(sClient.getOutputStream());
+            ObjectOutputStream toClient = new ObjectOutputStream(sClient.getOutputStream());
 
-            toClient.writeInt(chatList.size());
-            for (int i = 0; i < chatList.size(); i++) {
-                toClient.writeUTF(chatList.get(i));
-            }
+            toClient.writeObject(chatList);
+
 
             toClient.close();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
-
 }
