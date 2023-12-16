@@ -47,7 +47,7 @@
 	-fx-text-fill: -light-blue;
 }
 
-.mfx-transparent-button .mfx-ripple-generator {
+.mfx-transparent-button .mfx-ripple-generator{
 	-mfx-ripple-color: -deep-blue;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .link-button .mfx-ripple-generator {
-	-mfx-ripple-color: red;
+	-mfx-ripple-color: -deep-blue;
 }
 
 .outline-button .mfx-ripple-generator {

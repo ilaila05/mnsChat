@@ -20,6 +20,18 @@
 @import "OpenSans/OpenSans.css";
 @import "Roboto/Roboto.css";
 
-.bahnschrift {
-    -fx-font-family: Bahnschrift;
+.comfortaa {
+    -fx-font-family: "Comfortaa Regular";
+}
+
+.opensans {
+    -fx-font-family: "Open Sans Regular";
+}
+
+.roboto{
+    -fx-font-family: "Roboto Medium";
+}
+
+.underlined{
+    text-decoration: underline;
 }

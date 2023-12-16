@@ -29,6 +29,7 @@ public class Client_proxy {
 
     public static void sendToServerProxy(){
         try{
+
             Socket sClient = new Socket ("127.0.0.1", 8000 );
             System.out.println ("[Client]: socket creata." );
 

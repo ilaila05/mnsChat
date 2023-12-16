@@ -1,36 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import java.lang.String?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="747.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_LoginController">
+<VBox id="Vbox" prefHeight="747.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Client_LoginController">
     <children>
         <Pane prefHeight="791.0" prefWidth="632.0" style="-fx-background-color: #011627;">
             <children>
-                <MFXButton fx:id="login" layoutX="245.0" layoutY="610.0" prefHeight="40.0" prefWidth="144.0" stylesheets="@materialfx/css/Buttons.css" text="Invia">
+                <MFXButton fx:id="login" layoutX="245.0" layoutY="610.0" prefHeight="40.0" prefWidth="144.0" text="Invia">
                     <styleClass>
                         <String fx:value="outline-button" />
                         <String fx:value="mfx-ripple-generator" />
+                  <String fx:value="roboto" />
                     </styleClass>
+               <stylesheets>
+                  <URL value="@materialfx/css/Buttons.css" />
+                  <URL value="@materialfx/fonts/Fonts.css" />
+               </stylesheets>
                 </MFXButton>
-                <Label layoutX="175.0" layoutY="94.0" prefHeight="128.0" prefWidth="287.0" styleClass="bahnschrift" stylesheets="@materialfx/fonts/Fonts.css" text="LOGIN" textFill="#54defd">
+                <Label layoutX="172.0" layoutY="112.0" prefHeight="128.0" prefWidth="293.0" styleClass="roboto" stylesheets="@materialfx/fonts/Fonts.css" text="LOGIN" textFill="#54defd">
                     <font>
-                        <Font name="Bernard MT Condensed" size="100.0" />
+                        <Font name="Arial" size="100.0" />
                     </font>
                 </Label>
-                <MFXTextField fx:id="nickname" floatingText="nickname" layoutX="161.0" layoutY="289.0" prefHeight="78.0" prefWidth="314.0" styleClass="mfx-text-field" stylesheets="@materialfx/css/TextFields.css" />
-                <MFXPasswordField fx:id="password" floatingText="password" layoutX="161.0" layoutY="374.0" prefHeight="67.0" prefWidth="314.0" stylesheets="@materialfx/css/TextFields.css" />
-                <Label layoutX="161.0" layoutY="459.0" prefHeight="17.0" prefWidth="144.0" text="Non sei ancora registrato?" textFill="#455bff" />
-                <MFXButton fx:id="registrati" layoutX="408.0" layoutY="455.0" prefHeight="26.0" prefWidth="75.0" stylesheets="@materialfx/css/Buttons.css" text="Registrati">
-                    <styleClass>
-                        <String fx:value="mfx-transparent-button" />
-                    </styleClass>
+                <MFXTextField fx:id="nickname" floatingText="nickname" layoutX="161.0" layoutY="289.0" prefHeight="78.0" prefWidth="314.0" styleClass="roboto">
+               <stylesheets>
+                  <URL value="@materialfx/css/TextFields.css" />
+                  <URL value="@materialfx/fonts/Fonts.css" />
+               </stylesheets></MFXTextField>
+                <MFXPasswordField fx:id="password" floatingText="password" layoutX="161.0" layoutY="374.0" prefHeight="67.0" prefWidth="314.0" styleClass="roboto">
+               <stylesheets>
+                  <URL value="@materialfx/css/TextFields.css" />
+                  <URL value="@materialfx/fonts/Fonts.css" />
+               </stylesheets></MFXPasswordField>
+                <Label layoutX="161.0" layoutY="459.0" prefHeight="17.0" prefWidth="144.0" styleClass="roboto" stylesheets="@materialfx/fonts/Fonts.css" text="Non sei ancora registrato?" textFill="#455bff" />
+                <MFXButton fx:id="registrati" layoutX="408.0" layoutY="455.0" prefHeight="26.0" prefWidth="75.0" text="Registrati">
+               <styleClass>
+                  <String fx:value="link-button" />
+                  <String fx:value="roboto" />
+               </styleClass>
+               <stylesheets>
+                  <URL value="@materialfx/css/Buttons.css" />
+                  <URL value="@materialfx/fonts/Fonts.css" />
+               </stylesheets>
                 </MFXButton>
             </children>
         </Pane>
