@@ -47,8 +47,6 @@ public class Server_thread extends Thread{
 
             int size = dataInputStream.readInt();
 
-            System.out.println(size);
-
             for (int i = 0; i < size; i++) {
                 String element = dataInputStream.readUTF();
                 stringFromClient.add(element);
@@ -59,11 +57,14 @@ public class Server_thread extends Thread{
 
             switch (caseClass){
                 case "login":
-                    boolean state=login();
+                    boolean state = login();
                     sendLoginStateToClient(state);
                     break;
                 case "register":
                     register();
+                    break;
+                case "chatlist":
+                    chatList();
                     break;
                 default:
                     break;
@@ -156,6 +157,37 @@ public class Server_thread extends Thread{
 
             System.out.println("User registered successfully!");
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void chatList(){ //deve ritornare un'arraylist
+        ArrayList<String> chatList = new ArrayList<>();
+        try{
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            document = builder.parse(new File(XML_FILE_NAME));
+
+            NodeList nicknames = document.getElementsByTagName("nickname");
+
+            for (int i = 0; i < nicknames.getLength(); i++) {
+                chatList.add(nicknames.item(i).getTextContent());
+            }
+
+            for (int i = 0; i < chatList.size(); i++) {
+                if(chatList.get(i).equals(stringFromClient.get(0))){
+                    chatList.remove(i);
+                }
+            }
+
+            DataOutputStream toClient = new DataOutputStream(sClient.getOutputStream());
+
+            toClient.writeInt(chatList.size());
+            for (int i = 0; i < chatList.size(); i++) {
+                toClient.writeUTF(chatList.get(i));
+            }
+
+            toClient.close();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

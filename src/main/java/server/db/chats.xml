@@ -2,7 +2,7 @@
 <!DOCTYPE chats SYSTEM "chats.dtd">
 
 <chats>
-    <chat id="sender_reciver">
+    <chat id="ilaria_pier">
         <first>ciao</first>
         <last>ciao anche a te</last>
     </chat>

@@ -2,14 +2,15 @@ package client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import static client.Client_LoginController.getsNickname;
 
 public class Client_proxy {
     private static ArrayList<String> stringToServer;
     private static Boolean state;
-    public static void setLogin(String nickname, String password){
+    public static void setLogin(String nickname, String password){ //arraylist = "login", nickname, password
         stringToServer = new ArrayList<>();
         stringToServer.add("login");
         stringToServer.add(nickname);
@@ -17,7 +18,7 @@ public class Client_proxy {
         sendToServerProxy();
     }
 
-    public static void setRegister(String name, String surname, String nickname, String password){
+    public static void setRegister(String name, String surname, String nickname, String password){ //arraylist = "register", name, surname, nickname, password
         stringToServer = new ArrayList<>();
         stringToServer.add("register");
         stringToServer.add(name);
@@ -27,9 +28,14 @@ public class Client_proxy {
         sendToServerProxy();
     }
 
+    public static void reciveChatList(){ //arraylist = "chatlist", nickname
+        stringToServer = new ArrayList<>();
+        stringToServer.add("chatlist");
+        stringToServer.add(getsNickname());
+    }
+
     public static void sendToServerProxy(){
         try{
-
             Socket sClient = new Socket ("127.0.0.1", 8000 );
             System.out.println ("[Client]: socket creata." );
 

@@ -6,13 +6,9 @@ import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import io.github.palexdev.materialfx.dialogs.MFXGenericDialogBuilder;
 import io.github.palexdev.materialfx.dialogs.MFXStageDialog;
 import io.github.palexdev.materialfx.enums.ScrimPriority;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.LoadException;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,6 +34,16 @@ public class Client_LoginController {
     @FXML
     private VBox vBox;
 
+
+    private static String sNickname;
+    private static String sPassword;
+
+    //******************** getter per il proxy
+    public static String getsNickname() {
+        return sNickname;
+    }
+    //****************************************
+
     @FXML
     public void initialize() {
         login.setOnAction(event -> invio());
@@ -45,8 +51,8 @@ public class Client_LoginController {
     }
 
     public void invio() {
-        String sNickname = nickname.getText();
-        String sPassword = password.getText();
+        sNickname = nickname.getText();
+        sPassword = password.getText();
 
         if (sNickname.equals("") || sPassword.equals("")) {
             System.out.println("no");
