@@ -3,4 +3,4 @@
             <!ELEMENT first (#PCDATA)>
             <!ELEMENT last (#PCDATA)>
         <!ATTLIST chat
-                id ID #REQUIRED
+                id ID #REQUIRED>
