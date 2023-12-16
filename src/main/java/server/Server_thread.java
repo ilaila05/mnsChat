@@ -54,19 +54,13 @@ public class Server_thread extends Thread{
                 stringFromClient.add(element);
             }
 
-            dataInputStream.close();
-            inputStream.close();
-            sClient.close();
-
             String caseClass = stringFromClient.get(0);
             stringFromClient.remove(0);
 
             switch (caseClass){
                 case "login":
                     boolean state=login();
-                    if (!state){
-                        sendLoginStateToClient(state);
-                    }
+                    sendLoginStateToClient(state);
                     break;
                 case "register":
                     register();
@@ -75,21 +69,21 @@ public class Server_thread extends Thread{
                     break;
             }
 
+            dataInputStream.close();
+            inputStream.close();
+            sClient.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public void sendLoginStateToClient(boolean loginState) {
-        // Establish connection with Client_proxy and send login state
         try {
-            Socket s = new Socket("127.0.0.1", 8001); // Assuming port 8001 is used by the Client_proxy
-            DataOutputStream toClient = new DataOutputStream(s.getOutputStream());
+            DataOutputStream toClient = new DataOutputStream(sClient.getOutputStream());
 
-            // Sending the login state to the Client_proxy
             toClient.writeBoolean(loginState);
 
             toClient.close();
-            s.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

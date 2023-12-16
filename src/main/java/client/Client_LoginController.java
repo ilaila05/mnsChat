@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static client.Client_proxy.getState;
 import static client.Client_proxy.setLogin;
 
 public class Client_LoginController {
@@ -39,24 +40,34 @@ public class Client_LoginController {
         }else{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat_list.fxml"));
             try {
-
-                VBox registratiLayout = fxmlLoader.load();
-
-                Stage registratiStage = new Stage();
-                registratiStage.initModality(Modality.APPLICATION_MODAL);
-                registratiStage.setTitle("Registrati");
-
-                Scene chatListScene = new Scene(registratiLayout);
-                registratiStage.setScene(chatListScene);
-
-                Scene currentScene = registrati.getScene();
-                Stage currentStage = (Stage) currentScene.getWindow();
-                currentStage.close();
-
                 setLogin(sNickname, sPassword);
 
-                registratiStage.show();
-            } catch ( IOException e) {
+                if(getState()){
+                    VBox chatListLayout = fxmlLoader.load();
+
+                    Stage chatListStage = new Stage();
+                    chatListStage.initModality(Modality.APPLICATION_MODAL);
+                    chatListStage.setTitle("Registrati");
+
+                    Scene chatListScene = new Scene(chatListLayout);
+                    chatListStage.setScene(chatListScene);
+
+                    Scene currentScene = login.getScene();
+                    Stage currentStage = (Stage) currentScene.getWindow();
+                    currentStage.close();
+
+                    chatListStage.show();
+                }
+                else {
+                    /*
+                    - messaggio di errore
+                    - ricaricamento del login
+                    */
+                    System.out.println("login sbagliato");
+                }
+
+
+            } catch ( Exception e) {
                 e.printStackTrace();
             }
 

@@ -3,7 +3,7 @@
     <user>
         <name>John</name>
         <surname>Doe</surname>
-            <nickname>johndoe</nickname>
+        <nickname>johndoe</nickname>
         <password>secure123</password>
     </user>
     <user>
