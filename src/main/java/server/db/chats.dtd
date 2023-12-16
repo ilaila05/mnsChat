@@ -1,6 +1,6 @@
 <!ELEMENT chats (chat+)>
-        <!ELEMENT chat EMPTY>
+        <!ELEMENT chat (first+, last+)>
+            <!ELEMENT first (#PCDATA)>
+            <!ELEMENT last (#PCDATA)>
         <!ATTLIST chat
                 id ID #REQUIRED
-                f CDATA #REQUIRED
-                l CDATA #REQUIRED>

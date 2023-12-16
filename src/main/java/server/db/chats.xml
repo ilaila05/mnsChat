@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE chats SYSTEM "chats.dtd">
+
+<chats>
+    <chat id="sender_reciver">
+        <first>ciao</first>
+        <last>ciao anche a te</last>
+    </chat>
+</chats>
