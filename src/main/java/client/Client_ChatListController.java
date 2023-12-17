@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -41,8 +42,8 @@ public class Client_ChatListController implements Initializable {
             return cell;
         });
 
-        receiveChatList(nickname.getText());
-        chatListView.getItems().addAll(getChatList());
+
+
 
         chatListView.setOnMouseClicked(event -> {
             String selectedChat = String.valueOf(chatListView.getSelectionModel().getSelectedValues());
@@ -71,6 +72,13 @@ public class Client_ChatListController implements Initializable {
                 System.out.println("Hai selezionato: " + selectedChat);
             }
         });
+
+        receiveChatList(nickname.getText());
+        ArrayList<String> io =getChatList();
+        System.out.println(getChatList());
+        for (int i = 0; i < io.size(); i++) {
+            chatListView.getItems().add(io.get(i));
+        }
     }
 
 }

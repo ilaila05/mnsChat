@@ -5,6 +5,8 @@ import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static client.Client_proxy.setChatList;
+
 public class Client_Thread extends Thread {
     private ArrayList<String> stringToServer;
     private static Boolean state;
@@ -34,7 +36,18 @@ public class Client_Thread extends Thread {
 
             switch (caseClass){
                 case "login":
-                    state = fromServer.readBoolean();
+                    state = true;
+                    chatlistFromServer = new ArrayList<>();
+                    try{
+                        int size = fromServer.readInt();
+                        for (int i = 0; i < size; i++) {
+                            chatlistFromServer.add(fromServer.readUTF());
+                        }
+                        setChatList(chatlistFromServer);
+                        System.out.println(chatlistFromServer);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     break;
                 case "register":
                     break;
@@ -45,6 +58,7 @@ public class Client_Thread extends Thread {
                         for (int i = 0; i < size; i++) {
                             chatlistFromServer.add(fromServer.readUTF());
                         }
+                        System.out.println(chatlistFromServer);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -61,6 +75,7 @@ public class Client_Thread extends Thread {
     public static Boolean getState1(){
         return state;
     }
+
 
     public static ArrayList<String> getChatList1(){
         return chatlistFromServer;

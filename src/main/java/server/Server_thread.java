@@ -61,6 +61,7 @@ public class Server_thread extends Thread{
                 case "login":
                     boolean state = login();
                     sendLoginStateToClient(state);
+                    chatList();
                     break;
                 case "register":
                     register();
@@ -186,7 +187,7 @@ public class Server_thread extends Thread{
             for (int i = 0; i < chatList.size(); i++) {
                 toClient.writeUTF(chatList.get(i));
             }
-
+            System.out.println("elenco nickname"+chatList);
             toClient.close();
         }catch (Exception e){
             e.printStackTrace();

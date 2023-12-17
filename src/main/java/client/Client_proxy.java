@@ -12,6 +12,7 @@ import static client.Client_Thread.getState1;
 
 public class Client_proxy {
     private static ArrayList<String> stringToServer;
+    private static ArrayList<String> chatlist1 = new ArrayList<String>();
 
     private static Boolean state;
 
@@ -45,17 +46,20 @@ public class Client_proxy {
             Socket sClient = new Socket("127.0.0.1", 8000);
             System.out.println("[Client]: socket creata.");
 
-            while (true) {
+
                 Client_Thread clientThread = new Client_Thread(stringToServer, sClient);
                 clientThread.start();
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static Boolean getStateProxy() {return getState1();
+    public static Boolean getStateProxy() {return true;
     }
-
-    public static ArrayList<String> getChatList() {return getChatList1();}
+    public static void setChatList(ArrayList<String> chatlist) {
+        System.out.println("sjdakjsfkajhdfalsfalsjfjafds"+chatlist);
+    chatlist1=chatlist;
+    }
+    public static ArrayList<String> getChatList() {return chatlist1;}
 }
