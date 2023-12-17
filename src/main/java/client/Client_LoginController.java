@@ -17,7 +17,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
 
-import static client.Client_proxy.getState;
+import static client.Client_proxy.getStateProxy;
 import static client.Client_proxy.setLogin;
 
 public class Client_LoginController {
@@ -62,7 +62,7 @@ public class Client_LoginController {
             try {
                 setLogin(sNickname, sPassword);
 
-                if (getState()) { //utente presente = apertura chat
+                if (getStateProxy()) { //utente presente = apertura chat
 
                     VBox chatListLayout = fxmlLoader.load();
 

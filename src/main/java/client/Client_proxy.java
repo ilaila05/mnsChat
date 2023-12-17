@@ -6,6 +6,8 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static client.Client_Thread.getState1;
+
 //import static client.Client_LoginController.getsNickname;
 
 public class Client_proxy {
@@ -44,16 +46,12 @@ public class Client_proxy {
             Socket sClient = new Socket ("127.0.0.1", 8000 );
             System.out.println ("[Client]: socket creata." );
 
-            DataOutputStream toServer = new DataOutputStream ( sClient.getOutputStream());
-            ObjectInputStream fromServer = new ObjectInputStream(sClient.getInputStream());
-            toServer.writeInt(stringToServer.size());
-
-            for (int i = 0; i < stringToServer.size(); i++) {
-                toServer.writeUTF(stringToServer.get(i));
+            while(true){
+                Client_Thread clientThread = new Client_Thread(stringToServer, sClient);
+                clientThread.start(); // Starts the thread
+                clientThread.join();
             }
 
-            state = fromServer.readBoolean();
-            stringToClient = fromServer.readObject();
 
 
             /*
@@ -82,10 +80,8 @@ public class Client_proxy {
         }
     }
 
-
-
-    public static boolean getState(){
-        return state;
+    public static Boolean getStateProxy(){
+        return getState1();
     }
 
 
