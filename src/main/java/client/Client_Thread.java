@@ -65,7 +65,7 @@ public class Client_Thread extends Thread {
         try{
             chatlistFromServer = fromServer.readObject();
         }catch (Exception e){
-            e.printStackTrace(;);
+            e.printStackTrace();
         }
 
 

@@ -72,8 +72,6 @@ public class Client_proxy {
             *
             *
             * */
-            toServer.close();
-            sClient.close();
         }
         catch (Exception e){
             e.printStackTrace();
