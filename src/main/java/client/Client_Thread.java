@@ -12,6 +12,7 @@ public class Client_Thread extends Thread {
     private Socket sClient;
     private static DataOutputStream toServer;
     private static ObjectInputStream fromServer;
+    private static ArrayList<String> chatlistFromServer;
 
     public Client_Thread(ArrayList<String> data, Socket sClient) {
         this.stringToServer = data;
@@ -39,7 +40,12 @@ public class Client_Thread extends Thread {
                 case "register":
                     break;
                 case "chatlist":
-
+                    chatlistFromServer = new ArrayList<>();
+                    try{
+                        chatlistFromServer = (ArrayList<String>) fromServer.readObject();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     break;
@@ -59,16 +65,7 @@ public class Client_Thread extends Thread {
         return state;
     }
 
-    public static ArrayList<String> getChatList(){
-        ArrayList<String> chatlistFromServer= new ArrayList<>();
-
-        try{
-            chatlistFromServer = fromServer.readObject();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
+    public static ArrayList<String> getChatList1(){
         return chatlistFromServer;
     }
 }

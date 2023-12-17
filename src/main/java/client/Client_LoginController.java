@@ -13,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
 
@@ -66,7 +65,7 @@ public class Client_LoginController {
 
                     VBox chatListLayout = fxmlLoader.load();
 
-                    Client_ChatList controller = fxmlLoader.getController();
+                    Client_ChatListController controller = fxmlLoader.getController();
                     controller.getNicknameLabel().setText(sNickname);
 
                     Stage chatListStage = new Stage();
