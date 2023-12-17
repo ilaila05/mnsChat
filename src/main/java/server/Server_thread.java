@@ -29,6 +29,7 @@ public class Server_thread extends Thread{
     private Socket sClient;
     private InputStream inputStream;
     private DataInputStream dataInputStream;
+    private DataOutputStream toClient;
     private static ArrayList<String> stringFromClient = new ArrayList<>();
     public static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     public static TransformerFactory tFactory = TransformerFactory.newInstance();
@@ -42,6 +43,7 @@ public class Server_thread extends Thread{
         try {
             inputStream = sClient.getInputStream();
             dataInputStream = new DataInputStream(inputStream);
+            toClient = new DataOutputStream(sClient.getOutputStream());
 
             System.out.println("[Server-Thread]: in attesa del client");
 
@@ -73,18 +75,14 @@ public class Server_thread extends Thread{
             dataInputStream.close();
             inputStream.close();
             sClient.close();
-
+            toClient.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public void sendLoginStateToClient(boolean loginState) {
         try {
-            ObjectOutputStream toClient = new ObjectOutputStream(sClient.getOutputStream());
-
             toClient.writeBoolean(loginState);
-
-            toClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +159,7 @@ public class Server_thread extends Thread{
         }
     }
 
-    public void chatList(){ //deve ritornare un'arraylist
+    public void chatList(){
         ArrayList<String> chatList = new ArrayList<>();
         try{
 
@@ -178,17 +176,16 @@ public class Server_thread extends Thread{
                 }
             }
 
-
             for (int i = 0; i < chatList.size(); i++) {
                 if(chatList.get(i).equals(stringFromClient.get(0))){
                     chatList.remove(i);
                 }
             }
 
-            ObjectOutputStream toClient = new ObjectOutputStream(sClient.getOutputStream());
-
-            toClient.writeObject(chatList);
-
+            toClient.writeInt(chatList.size());
+            for (int i = 0; i < chatList.size(); i++) {
+                toClient.writeUTF(chatList.get(i));
+            }
 
             toClient.close();
         }catch (Exception e){

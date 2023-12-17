@@ -2,7 +2,6 @@ package client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -13,7 +12,6 @@ import static client.Client_Thread.getState1;
 
 public class Client_proxy {
     private static ArrayList<String> stringToServer;
-    private static Object stringToClient;
 
     private static Boolean state;
 
@@ -49,30 +47,8 @@ public class Client_proxy {
 
             while (true) {
                 Client_Thread clientThread = new Client_Thread(stringToServer, sClient);
-                clientThread.start(); // Starts the thread
-                clientThread.join();
+                clientThread.start();
             }
-
-
-
-            /*
-             *   questo appunto e per te ilaria
-             *    il problema vero e' come gestire le 2 richieste \(?)
-             *   puoi mandare un oggetto e fin qua pero i problemi sono altri
-             * sei vai nel thread ti ho fatto leggere i nick name e gli ho fatti mettere dentro un array list
-             * il nickname lo prende dalla label che c'e dentro la chat list (che e' la prima cosa che vado a settare)
-             * non posso prendere una cosa da una finestra che e' chiusa
-             * il punto e' come gestire le 2 rischieste essendo che la richiesta e' su qeusto ordine
-             * login-setlogin-thread-salvastate-chiudelogin-aprechatlist
-             * nella rischiesta di chat list pero ci sono dei problemi nel read che non capisco
-             * spiace
-             * forse centrano i objectinputstream
-             * almeno penso
-             * se prorio modifica e togli che manda solo l'oggetto
-             *
-             *
-             *
-             * */
         } catch (Exception e) {
             e.printStackTrace();
         }
