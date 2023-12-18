@@ -22,9 +22,9 @@
 
 .mfx-list-view .virtual-flow .mfx-list-cell .data-label {
 	-fx-font-family: 'Open Sans Regular';
-	-fx-background-color: -mfx-purple;
+	-fx-background-color: #011627;
 	-fx-background-radius: 10;
-	-fx-border-color: -mfx-purple;
+	-fx-border-color: #011627;
 	-fx-border-radius: 10;
 	-fx-padding: 4;
 	-fx-pref-width: 200;

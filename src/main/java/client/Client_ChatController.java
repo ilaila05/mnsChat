@@ -187,9 +187,8 @@ public class Client_ChatController {
                     Stage chatListStage = new Stage();
                     chatListStage.initModality(Modality.APPLICATION_MODAL);
                     chatListStage.setTitle("chatlist");
-
-                    Stage currentStage = (Stage) chatListLayout.getScene().getWindow();
-                    currentStage.close();
+                     Stage currentStage = (Stage) chatBox.getScene().getWindow();
+                     currentStage.close();
 
                     Scene chatListScene = new Scene(chatListLayout);
                     chatListStage.setScene(chatListScene);

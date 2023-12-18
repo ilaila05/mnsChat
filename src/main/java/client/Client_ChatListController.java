@@ -35,7 +35,6 @@ public class Client_ChatListController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         chatListView.setCellFactory((s) -> {
             MFXListCell<String> cell = new MFXListCell<>(chatListView, s);
-            //cell.setStyle("-fx-background-color: red;");
             return cell;
         });
         List<String> chatData = null;
@@ -59,11 +58,12 @@ public class Client_ChatListController implements Initializable {
                     HashMap chatM= receiveChat();
                     if (chatM!= null){
                     for (int i = 0; i < chatM.size()/2; i++) {
+                        System.out.println(chatM.get("Sender"+i) +nickname.getText());
                         if (chatM.get("Sender"+i).toString().equals(nickname.getText())){
-                            controller.setReceiveMessage(chatM.get("Message"+i).toString());
+                            controller.setSendMessage(chatM.get("Message"+i).toString());
                         }
                         else {
-                            controller.setSendMessage(chatM.get("Message"+i).toString());
+                            controller.setReceiveMessage(chatM.get("Message"+i).toString());
                         }
                     }}
 

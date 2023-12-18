@@ -241,7 +241,7 @@ public class Server_thread extends Thread {
                                 Node messageNode = messageList.item(j);
                                 if (messageNode.getNodeType() == Node.ELEMENT_NODE) {
                                     Element messageElement = (Element) messageNode;
-                                    String sender2 = messageElement.getAttribute("sender");
+                                    String sender2 = messageElement.getAttribute("sender"+j);
                                     String messageText = messageElement.getTextContent();
 
                                     System.out.println("Sender: " + sender2 + ", Message: " + messageText);

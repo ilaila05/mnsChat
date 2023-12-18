@@ -2,5 +2,5 @@
     <chat id="ila05_johndoe">
         <message sender0="johndoe">ciao</message>
         <message sender1="ila05">ciao anche a te</message>
-        <message sender2="johndoe">io</message><message sender3="johndoe">bella bro</message></chat>
-<chat id="johndoe_steng234"><message sender0="johndoe">asda</message><message sender1="johndoe">dasdasd</message><message sender2="johndoe">dadsd</message></chat><chat id="johndoe_janesmith"/>></chats>
+        <message sender2="johndoe">io</message><message sender3="johndoe">bella bro</message><message sender4="ila05">dadsd</message><message sender5="ila05">dasd</message></chat>
+<chat id="johndoe_steng234"><message sender0="johndoe">asda</message><message sender1="johndoe">dasdasd</message><message sender2="johndoe">dadsd</message></chat><chat id="johndoe_janesmith"/>&gt;<chat id="johndoe_piergi"/></chats>
