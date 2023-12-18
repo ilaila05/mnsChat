@@ -12,19 +12,27 @@ public class Server_proxy {
 
     public static void main(String[] args) {
         try {
-            ServerSocket sServer = new ServerSocket(8000);
-            System.out.println("[Server]: in attesa su porta 8000.");
+            ServerSocket sServer = new ServerSocket(7777);
+            System.out.println("[Server]: in attesa su porta 7777.");
             while (true) {
                 Socket sClient = sServer.accept();
                 System.out.println("[Server]: nuovo client.");
-
-                Server_thread thread = new Server_thread(sClient);
-                thread.start();
+                // Handle the client within a single thread
+                handleClient(sClient);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+    private static void handleClient(Socket sClient) {
+        try {
+            Server_thread thread = new Server_thread(sClient);
+            thread.start();
+            thread.join(); // Wait for the thread to finish handling this client
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

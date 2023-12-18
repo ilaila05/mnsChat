@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static client.Client_proxy.getChatList;
+import static client.Client_proxy.receiveChat;
 import static client.Client_proxy.receiveChatList;
 
 public class Client_ChatListController implements Initializable {
@@ -28,12 +28,9 @@ public class Client_ChatListController implements Initializable {
     private MFXListView<String> chatListView;
     @FXML
     private Label nickname;
-
-    // Getter for the Label
     public Label getNicknameLabel() {
         return nickname;
     }
-
 
     public void initialize(URL location, ResourceBundle resources) {
         chatListView.setCellFactory((s) -> {
@@ -41,17 +38,34 @@ public class Client_ChatListController implements Initializable {
             //cell.setStyle("-fx-background-color: red;");
             return cell;
         });
-
-
-
+        List<String> chatData = null;
+        try {
+            chatData = receiveChatList();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        chatListView.getItems().addAll(chatData);
 
         chatListView.setOnMouseClicked(event -> {
             String selectedChat = String.valueOf(chatListView.getSelectionModel().getSelectedValues());
             if (selectedChat != null) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat.fxml"));
                 try {
-
                     BorderPane chat = fxmlLoader.load();
+                    Client_ChatController controller = fxmlLoader.getController();
+                    controller.setSender(nickname.getText());
+                    controller.setReceiver(selectedChat.substring(1, selectedChat.length() - 1));
+
+                    HashMap chatM= receiveChat();
+                    if (chatM!= null){
+                    for (int i = 0; i < chatM.size()/2; i++) {
+                        if (chatM.get("Sender"+i).toString().equals(nickname.getText())){
+                            controller.setReceiveMessage(chatM.get("Message"+i).toString());
+                        }
+                        else {
+                            controller.setSendMessage(chatM.get("Message"+i).toString());
+                        }
+                    }}
 
                     Stage chatListStage = new Stage();
                     chatListStage.initModality(Modality.APPLICATION_MODAL);
@@ -67,18 +81,11 @@ public class Client_ChatListController implements Initializable {
                     chatListStage.show();
                 } catch ( IOException e) {
                     e.printStackTrace();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-
-                System.out.println("Hai selezionato: " + selectedChat);
             }
         });
-
-        receiveChatList(nickname.getText());
-        ArrayList<String> io =getChatList();
-        System.out.println(getChatList());
-        for (int i = 0; i < io.size(); i++) {
-            chatListView.getItems().add(io.get(i));
-        }
     }
 
 }

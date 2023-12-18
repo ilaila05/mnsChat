@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Map;
 
-import static client.Client_proxy.getStateProxy;
 import static client.Client_proxy.setLogin;
 
 public class Client_LoginController {
@@ -38,11 +37,11 @@ public class Client_LoginController {
     private static String sNickname;
     private static String sPassword;
 
-    /******************** getter per il proxy
+    //******************** getter per il proxy
     public static String getsNickname() {
         return sNickname;
     }
-    ****************************************/
+    //****************************************
 
     @FXML
     public void initialize() {
@@ -59,9 +58,9 @@ public class Client_LoginController {
         } else {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat_list.fxml"));
             try {
-                setLogin(sNickname, sPassword);
 
-                if (getStateProxy()) { //utente presente = apertura chat
+
+                if (setLogin(sNickname, sPassword)) { //utente presente = apertura chat
 
                     VBox chatListLayout = fxmlLoader.load();
 
@@ -70,7 +69,8 @@ public class Client_LoginController {
 
                     Stage chatListStage = new Stage();
                     chatListStage.initModality(Modality.APPLICATION_MODAL);
-                    chatListStage.setTitle("Registrati");
+                    chatListStage.setTitle("chat list");
+
 
                     Scene chatListScene = new Scene(chatListLayout);
                     chatListStage.setScene(chatListScene);
@@ -82,7 +82,8 @@ public class Client_LoginController {
                     chatListStage.show();
                 } else { //utente inesistente = messaggio di errore e reset del login
                     Scene currentScene = login.getScene();
-                    thisStage = (Stage) currentScene.getWindow();
+                    Stage currentStage = (Stage) currentScene.getWindow();
+
 
                     this.dialogContent = MFXGenericDialogBuilder.build()
                             .setContentText("Attenzione\nil nickname o la password sono sbagliati\nriprova a fare il login oppure, se non sei iscritto, registrati")
@@ -103,6 +104,7 @@ public class Client_LoginController {
                                 dialog.close();
                                 nickname.setText("");
                                 password.setText("");
+
                             }),
                             Map.entry(new MFXButton("Register"), event -> {
                                 dialog.close();

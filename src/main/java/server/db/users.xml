@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE users SYSTEM "users.dtd">
-
-<users>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><users>
     <user>
         <name>John</name>
         <surname>Doe</surname>
@@ -20,4 +17,4 @@
         <nickname>steng234</nickname>
         <password>Ciao123!</password>
     </user>
-</users>
+<user><name>ilaria</name><surname>zorzella</surname><nickname>ila05</nickname><password>00000000</password></user><user><name>pier</name><surname>cor</surname><nickname>piergi</nickname><password>11111111</password></user></users>

@@ -41,13 +41,13 @@ public class Client_RegisterController {
         if (sNome.equals("") || sCognome.equals("") || sNickname.equals("") || sPassword.equals("")) {
             System.out.println("no");
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chat_list.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
             try {
                 VBox registratiLayout = fxmlLoader.load();
 
                 Stage registratiStage = new Stage();
                 registratiStage.initModality(Modality.APPLICATION_MODAL);
-                registratiStage.setTitle("Registrati");
+                registratiStage.setTitle("login");
 
                 Scene chatListScene = new Scene(registratiLayout);
                 registratiStage.setScene(chatListScene);
@@ -61,6 +61,8 @@ public class Client_RegisterController {
                 registratiStage.show();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
 
         }

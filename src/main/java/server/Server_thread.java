@@ -1,15 +1,17 @@
 package server;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -20,20 +22,20 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import java.util.concurrent.Semaphore;
 
-public class Server_thread extends Thread{
+public class Server_thread extends Thread {
     public static Document document;
     protected static final String XML_FILE_NAME = "src/main/java/server/db/users.xml";
     private Socket sClient;
     private InputStream inputStream;
     private DataInputStream dataInputStream;
-    private DataOutputStream toClient;
+    private ObjectOutputStream objstream;
     private static ArrayList<String> stringFromClient = new ArrayList<>();
     public static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     public static TransformerFactory tFactory = TransformerFactory.newInstance();
-    public static Transformer transformer;
+    public static DataOutputStream toClient;
+    public static File inputFile = new File("src/main/java/server/db/chats.xml");
+    public static DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
     public Server_thread(Socket sClient) {
         this.sClient = sClient;
@@ -41,33 +43,57 @@ public class Server_thread extends Thread{
 
     public void run() {
         try {
+            System.out.println("[Server-Thread]: in attesa del client");
+
             inputStream = sClient.getInputStream();
             dataInputStream = new DataInputStream(inputStream);
             toClient = new DataOutputStream(sClient.getOutputStream());
 
-            System.out.println("[Server-Thread]: in attesa del client");
-
             int size = dataInputStream.readInt();
-
+            System.out.println(size);
             for (int i = 0; i < size; i++) {
                 String element = dataInputStream.readUTF();
                 stringFromClient.add(element);
             }
 
             String caseClass = stringFromClient.get(0);
-            stringFromClient.remove(0);
+            System.out.println(caseClass);
 
-            switch (caseClass){
+            switch (caseClass) {
                 case "login":
-                    boolean state = login();
-                    sendLoginStateToClient(state);
-                    chatList();
+                    toClient.writeBoolean(login());
+                    toClient.flush();
                     break;
                 case "register":
                     register();
                     break;
                 case "chatlist":
-                    chatList();
+                    chatList(stringFromClient.get(1));
+                    toClient.flush();
+                    break;
+                case "chat":
+                    System.out.println(1);
+                    HashMap chat = chat(stringFromClient.get(1), stringFromClient.get(2));
+                    System.out.println(2);
+                    if (chat.isEmpty()){
+                        buildChat(chat, stringFromClient.get(1), stringFromClient.get(2));
+                        toClient.writeInt(0);
+                    }else{
+                        toClient.writeInt(chat.size());
+                        System.out.println(chat+""+chat.size());
+                        for (int i = 0; i < chat.size()/2; i++) {
+                            toClient.writeUTF( chat.get("Sender"+i).toString());
+                            toClient.writeUTF( chat.get("Message"+i).toString());
+                        }
+
+                    }
+                    System.out.println(5);
+                    toClient.flush();
+                    break;
+                case "save":
+                    saveMessagge(stringFromClient.get(1),stringFromClient.get(2),stringFromClient.get(3));
+
+                    toClient.flush();
                     break;
                 default:
                     break;
@@ -76,19 +102,13 @@ public class Server_thread extends Thread{
             dataInputStream.close();
             inputStream.close();
             sClient.close();
-            toClient.close();
+            stringFromClient.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void sendLoginStateToClient(boolean loginState) {
-        try {
-            toClient.writeBoolean(loginState);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static boolean login(){
+
+    public static boolean login() {
         System.out.println(stringFromClient);
 
         try {
@@ -104,7 +124,7 @@ public class Server_thread extends Thread{
                     String storedUsername = userElement.getElementsByTagName("nickname").item(0).getTextContent();
                     String storedPassword = userElement.getElementsByTagName("password").item(0).getTextContent();
 
-                    if (storedUsername.equals(stringFromClient.get(0)) && storedPassword.equals(stringFromClient.get(1))) {
+                    if (storedUsername.equals(stringFromClient.get(1)) && storedPassword.equals(stringFromClient.get(2))) {
                         System.out.println("Login successful!");
                         // Perform further actions for a successful login
                         return true;
@@ -122,7 +142,6 @@ public class Server_thread extends Thread{
 
     public static void register() {
         System.out.println(stringFromClient);
-
         try {
             // Parsing the XML file
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -131,19 +150,19 @@ public class Server_thread extends Thread{
             Element newUser = document.createElement("user");
 
             Element name = document.createElement("name");
-            name.appendChild(document.createTextNode(stringFromClient.get(0)));
+            name.appendChild(document.createTextNode(stringFromClient.get(1)));
             newUser.appendChild(name);
 
             Element surname = document.createElement("surname");
-            surname.appendChild(document.createTextNode(stringFromClient.get(1)));
+            surname.appendChild(document.createTextNode(stringFromClient.get(2)));
             newUser.appendChild(surname);
 
             Element nickname = document.createElement("nickname");
-            nickname.appendChild(document.createTextNode(stringFromClient.get(2)));
+            nickname.appendChild(document.createTextNode(stringFromClient.get(3)));
             newUser.appendChild(nickname);
 
             Element password = document.createElement("password");
-            password.appendChild(document.createTextNode(stringFromClient.get(3)));
+            password.appendChild(document.createTextNode(stringFromClient.get(4)));
             newUser.appendChild(password);
 
             NodeList users = document.getElementsByTagName("users");
@@ -160,9 +179,9 @@ public class Server_thread extends Thread{
         }
     }
 
-    public void chatList(){
+    public void chatList(String nickname) {
         ArrayList<String> chatList = new ArrayList<>();
-        try{
+        try {
 
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(XML_FILE_NAME);
@@ -173,24 +192,181 @@ public class Server_thread extends Thread{
                 if (user.getNodeType() == Node.ELEMENT_NODE) {
                     Element userElement = (Element) user;
                     chatList.add(userElement.getElementsByTagName("nickname").item(0).getTextContent());
-
                 }
             }
-
             for (int i = 0; i < chatList.size(); i++) {
-                if(chatList.get(i).equals(stringFromClient.get(0))){
-                    chatList.remove(i);
+                if (chatList.get(i).equals(nickname)) {
+                    chatList.remove(chatList.get(i));
+                    i = chatList.size() + 1;
                 }
             }
 
             toClient.writeInt(chatList.size());
-            for (int i = 0; i < chatList.size(); i++) {
-                toClient.writeUTF(chatList.get(i));
+            for (String s : chatList) {
+                toClient.writeUTF(s);
             }
-            System.out.println("elenco nickname"+chatList);
-            toClient.close();
-        }catch (Exception e){
+
+            System.out.println("elenco nickname" + chatList);
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public HashMap chat(String sender, String receiver) {
+        try {
+
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            NodeList chatList = doc.getElementsByTagName("chat");
+            HashMap<String, String> messageMap = new HashMap<>();
+
+            for (int i = 0; i < chatList.getLength(); i++) {
+                Node chatNode = chatList.item(i);
+                if (chatNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element chatElement = (Element) chatNode;
+                    String id = chatElement.getAttribute("id");
+
+                    String[] parts = id.split("_");
+                    if (parts.length == 2) {
+                        String first = parts[0];
+                        String second = parts[1];
+                        System.out.println(sender + " " + Arrays.toString(parts) + " " + receiver);
+                        if ((first.equals(sender) && second.equals(receiver)) || (first.equals(receiver) && second.equals(sender))) {
+                            NodeList messageList = chatElement.getElementsByTagName("message");
+                            System.out.println("Chat ID: " + id);
+                            for (int j = 0; j < messageList.getLength(); j++) {
+                                Node messageNode = messageList.item(j);
+                                if (messageNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element messageElement = (Element) messageNode;
+                                    String sender2 = messageElement.getAttribute("sender");
+                                    String messageText = messageElement.getTextContent();
+
+                                    System.out.println("Sender: " + sender2 + ", Message: " + messageText);
+
+                                    messageMap.put("Sender"+j, sender2);
+                                    messageMap.put("Message"+j, messageText);
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return messageMap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new HashMap<>();
+    }
+
+    public void buildChat(Map chat, String sender, String receiver) {
+        String idnew=sender+"_"+receiver;
+        boolean exist = false;
+        if (chat.isEmpty()) {
+            System.out.println("chat vuota");
+            try {
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+                Document doc = dBuilder.parse(inputFile);
+                doc.getDocumentElement().normalize();
+
+                NodeList chatList = doc.getElementsByTagName("chat");
+                for (int i = 0; i < chatList.getLength(); i++) {
+                    Node chatNode = chatList.item(i);
+                    if (chatNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element chatElement = (Element) chatNode;
+                        String id = chatElement.getAttribute("id");
+                        if (id.equals(idnew)) {
+                            exist = true;
+                        }
+                    }
+
+                }
+
+                if (!exist) {
+
+                Element newChat = doc.createElement("chat");
+                newChat.setAttribute("id", sender + "_" + receiver);
+
+                NodeList chats = doc.getElementsByTagName("chats");
+                chats.item(0).appendChild(newChat);
+
+                Transformer transformer = tFactory.newTransformer();
+                DOMSource source = new DOMSource(doc);
+                StreamResult result = new StreamResult(inputFile);
+                transformer.transform(source, result);
+            }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+
+    }
+
+    public void saveMessagge(String sender,String receiver,String message) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+        Document doc = dBuilder.parse(inputFile);
+        doc.getDocumentElement().normalize();
+
+        NodeList chatList = doc.getElementsByTagName("chat");
+        HashMap<String, String> messageMap = new HashMap<>();
+        for (int i = 0; i < chatList.getLength(); i++) {
+            Node chatNode = chatList.item(i);
+            if (chatNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element chatElement = (Element) chatNode;
+                String id = chatElement.getAttribute("id");
+
+                String[] parts = id.split("_");
+                if (parts.length == 2) {
+                    String first = parts[0];
+                    String second = parts[1];
+                    System.out.println(sender + " " + Arrays.toString(parts) + " " + receiver);
+                    if ((first.equals(sender) && second.equals(receiver)) || (first.equals(receiver) && second.equals(sender))) {
+
+                        NodeList messageList = chatElement.getElementsByTagName("message");
+                        System.out.println("Chat ID: " + id);
+                        for (int j = 0; j < messageList.getLength(); j++) {
+                            Node messageNode = messageList.item(j);
+                            if (messageNode.getNodeType() == Node.ELEMENT_NODE) {
+                                Element messageElement = (Element) messageNode;
+                                String sender2 = messageElement.getAttribute("sender");
+                                String messageText = messageElement.getTextContent();
+
+                                System.out.println("Sender: " + sender2 + ", Message: " + messageText);
+
+                                messageMap.put("Sender"+j, sender2);
+                                messageMap.put("Message"+j, messageText);
+
+                            }
+                        }
+
+                        Element messageElement = doc.createElement("message");
+                        messageElement.setAttribute("sender"+messageMap.size()/2, sender); // Set sender attribute
+                        messageElement.setTextContent(message); // Set message content
+
+                        chatElement.appendChild(messageElement); // Append the message to the chat
+
+                        // Save the changes back to the XML file
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource source = new DOMSource(doc);
+                        StreamResult result = new StreamResult(inputFile);
+                        transformer.transform(source, result);
+
+                        System.out.println("Message saved successfully!");
+                        return; // Exit the method after saving the message
+                    }
+                }
+            }
         }
     }
 }

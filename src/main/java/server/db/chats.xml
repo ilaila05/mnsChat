@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE chats SYSTEM "chats.dtd">
-
-<chats>
-    <chat id="ilaria_pier">
-        <first>ciao</first>
-        <last>ciao anche a te</last>
-    </chat>
-</chats>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><chats>
+    <chat id="ila05_johndoe">
+        <message sender0="johndoe">ciao</message>
+        <message sender1="ila05">ciao anche a te</message>
+        <message sender2="johndoe">io</message><message sender3="johndoe">bella bro</message></chat>
+<chat id="johndoe_steng234"><message sender0="johndoe">asda</message><message sender1="johndoe">dasdasd</message><message sender2="johndoe">dadsd</message></chat><chat id="johndoe_janesmith"/>></chats>

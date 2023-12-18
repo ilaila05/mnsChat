@@ -1,6 +1,10 @@
 <!ELEMENT chats (chat+)>
-        <!ELEMENT chat (first+, last+)>
-            <!ELEMENT first (#PCDATA)> <!--first = l'utente che ha mandato il messaggio è quello prima del _ nell'id-->
-            <!ELEMENT last (#PCDATA)> <!--last = l'utente che ha mandato il messaggio è quello dopo del _ nell'id-->
+        <!ELEMENT chat (message+)>
         <!ATTLIST chat
-                id ID #REQUIRED>
+                id ID #REQUIRED
+                >
+        <!ELEMENT message (#PCDATA)>
+        <!ATTLIST message
+                sender CDATA #REQUIRED
+                >
+
